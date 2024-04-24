@@ -28,9 +28,9 @@ rm ./sub-*_aseg.stats.csv
 
 
 ## wmparc.stats
-First, we cut the wmparc.stats file to the last 46 lines that are formatted like a tsv
+First, we cut the wmparc.stats file to the last 71 lines that are formatted like a tsv
 ```
-for i in `ls project/bids/derivatives/sourcedata/freesurfer/sub*/stats/wmparc.stats`; do echo ${i} && tail -n 46 ${i} > ${i}.csv; done
+for i in `ls project/bids/derivatives/sourcedata/freesurfer/sub*/stats/wmparc.stats`; do echo ${i} && tail -n 71 ${i} > ${i}.csv; done
 ```
 
 Then we make a copy of these files with their BIDS participant label in the filename
