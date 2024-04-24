@@ -26,6 +26,28 @@ If all has gone well, we can delete the participant-level csvs
 rm ./sub-*_aseg.stats.csv
 ```
 
+
+## wmparc.stats
+First, we cut the wmparc.stats file to the last 46 lines that are formatted like a tsv
+```
+for i in `ls project/bids/derivatives/sourcedata/freesurfer/sub*/stats/wmparc.stats`; do echo ${i} && tail -n 46 ${i} > ${i}.csv; done
+```
+
+Then we make a copy of these files with their BIDS participant label in the filename
+```
+for i in `ls project/bids/derivatives/sourcedata/freesurfer/sub*/stats/wmparc.stats.csv`; do echo ${i} && ii=`echo ${i} | rev | cut -d/ -f3 | rev` && cp ${i} ./${ii}_wmparc.stats.csv
+```
+
+Now we can adjust the path for the csvs in the python script and create the combined csv at the group level
+```
+python3 collate_wmparc.py
+```
+
+If all has gone well, we can delete the participant-level csvs
+```
+rm ./sub-*_aseg.stats.csv
+```
+
 ## brainvol.stats
 
 ```
